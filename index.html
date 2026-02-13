@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Cutes 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    background: #f5f1eb;
+    font-family: 'Inter', sans-serif;
+    color: #3a3a3a;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+section {
+    padding: 80px 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+}
+
+img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: 0.3s ease;
+}
+
+#yesBtn {
+    background: #b5838d;
+    color: white;
+}
+
+#yesBtn:hover {
+    background: #a36f79;
+}
+
+#noBtn {
+    background: white;
+    color: #b5838d;
+    position: absolute;
+}
+
+.small-text {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+.fade-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    z-index: 10;
+    padding: 20px;
+    text-align: center;
+}
+
+.heart {
+    position: fixed;
+    color: #b5838d;
+    font-size: 18px;
+    animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-800px); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop autoplay>
+<source src="https://cdn.pixabay.com/audio/2023/03/14/audio_38f1f50b2f.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="yesMusic">
+<source src="https://cdn.pixabay.com/audio/2022/10/16/audio_12c3b51e68.mp3" type="audio/mpeg">
+</audio>
+
+<section>
+<h1>For My Cutes 🤍</h1>
+<p>Since June 10th, the world has felt softer.</p>
+<img src="main.jpg" alt="Us">
+</section>
+
+<section>
+<h2>Reasons I Adore You</h2>
+
+<img src="funny1.jpg" alt="Funny 1">
+<p>Because you are chaos in the cutest form.</p>
+
+<img src="funny2.jpg" alt="Funny 2">
+<p>Because life with you is never boring.</p>
+
+</section>
+
+<section>
+<h2>There’s just one more thing…</h2>
+<button onclick="showQuestion()">Continue</button>
+</section>
+
+<div class="fade-overlay" id="questionOverlay">
+<h2>Cutes…<br>will you be my Valentine?</h2>
+<p class="small-text">(Try pressing no for a laugh 😌)</p>
+<div style="position: relative; height: 120px;">
+<button id="yesBtn">Yes 🤍</button>
+<button id="noBtn">No</button>
+</div>
+</div>
+
+<script>
+function showQuestion() {
+    document.getElementById("questionOverlay").style.display = "flex";
+}
+
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+document.getElementById("yesBtn").addEventListener("click", function() {
+    document.getElementById("bgMusic").pause();
+    document.getElementById("yesMusic").play();
+    createHearts();
+    document.querySelector("#questionOverlay h2").innerHTML =
+        "June 10th was the start of my favourite story.<br><br>I’d choose you every time. 🤍";
+    document.querySelector(".small-text").style.display = "none";
+    noBtn.style.display = "none";
+    this.style.display = "none";
+});
+
+function createHearts() {
+    for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "♡";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }
+}
+</script>
+
+</body>
+</html>
